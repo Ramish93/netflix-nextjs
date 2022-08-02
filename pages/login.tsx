@@ -1,7 +1,22 @@
 import Head from "next/head";
 import Image from "next/image";
+import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+interface Inputs {
+  email: string;
+  password: string;
+}
 
 const login = () => {
+  const [login, setLogin] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>();
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
   return (
     <div className="relative flex h-screen w-screen flex-col bg-black md:items-center md:justify-center md:bg-transparent ">
       <Head>
@@ -22,6 +37,7 @@ const login = () => {
       />
       <form
         action=""
+        onSubmit={handleSubmit(onSubmit)}
         className="relative mt-24 space-y-8 rounded bg-black/70 py-10 px-6 md:mt-0 md:max-w-md md:px-14"
       >
         <h1 className="text-4xl font-semibold ">Sign In</h1>
@@ -31,7 +47,7 @@ const login = () => {
               type="email"
               placeholder="Email"
               className="input"
-              required
+              {...register("email", { required: true })}
             />
           </label>
           <label htmlFor="" className="inline-block w-full">
@@ -39,12 +55,12 @@ const login = () => {
               type="password"
               placeholder="Password"
               className="input"
-              required
+              {...register("password", { required: true })}
             />
           </label>
         </div>
         <button className="w-full rounded bg-[#9e2323] ">Sign In</button>
-        <div>
+        <div className="text-[gray]">
           New to Netflix{"  "}
           <button
             className="cursor-pointer text-white hover:underline"
