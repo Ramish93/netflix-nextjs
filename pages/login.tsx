@@ -13,7 +13,7 @@ const login = () => {
   const {
     register,
     handleSubmit,
-    watch,
+
     formState: { errors },
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
@@ -46,17 +46,23 @@ const login = () => {
             <input
               type="email"
               placeholder="Email"
-              className="input"
+              className="input text-white"
               {...register("email", { required: true })}
             />
+            {errors.email && (
+              <span className="text-[#9e2323]">This field is required</span>
+            )}
           </label>
           <label htmlFor="" className="inline-block w-full">
             <input
               type="password"
               placeholder="Password"
-              className="input"
+              className="input text-white"
               {...register("password", { required: true })}
             />
+            {errors.password && (
+              <span className="text-[#9e2323]">This field is required</span>
+            )}
           </label>
         </div>
         <button className="w-full rounded bg-[#9e2323] ">Sign In</button>
