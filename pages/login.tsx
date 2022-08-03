@@ -12,6 +12,7 @@ interface Inputs {
 const login = () => {
   const [login, setLogin] = useState(false);
   const { signIn, signUp } = useAuth();
+
   const {
     register,
     handleSubmit,
