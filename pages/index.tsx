@@ -30,6 +30,7 @@ const Home = ({
   trendingNow,
 }: Props) => {
   const { loading } = useAuth();
+  // const showModal = useRecoilValue();
 
   if (loading) return "Loading...";
 
