@@ -9,16 +9,15 @@ interface Inputs {
   password: string;
 }
 
-const { signIn, signUp } = useAuth();
-
 const login = () => {
   const [login, setLogin] = useState(false);
+  const { signIn, signUp } = useAuth();
   const {
     register,
     handleSubmit,
-
     formState: { errors },
   } = useForm<Inputs>();
+
   const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
     if (login) {
       await signIn(email, password);
