@@ -16,7 +16,13 @@ const login = () => {
 
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    if (login) {
+      // await signIn(email, password)
+    } else {
+      // await signUps(email, password)
+    }
+  };
   return (
     <div className="relative flex h-screen w-screen flex-col bg-black md:items-center md:justify-center md:bg-transparent ">
       <Head>
@@ -65,12 +71,18 @@ const login = () => {
             )}
           </label>
         </div>
-        <button className="w-full rounded bg-[#9e2323] ">Sign In</button>
+        <button
+          className="w-full rounded bg-[#9e2323] "
+          onClick={() => setLogin(true)}
+        >
+          Sign In
+        </button>
         <div className="text-[gray]">
           New to Netflix{"  "}
           <button
             className="cursor-pointer text-white hover:underline"
             type="submit"
+            onClick={() => setLogin(false)}
           >
             Click me!
           </button>
