@@ -1,5 +1,26 @@
+import { useRecoilState, useRecoilValue } from "recoil";
+import { modalState } from "../atoms/modalAtom";
+import MuiModal from "@mui/material/Modal";
+import { XIcon } from "@heroicons/react/solid";
+
 const Modal = () => {
-  return <div>Modal</div>;
+  const [showModal, setShowModal] = useRecoilState(modalState);
+
+  const handleClose = () => {
+    setShowModal(false);
+  };
+  return (
+    <MuiModal open={showModal} onClose={handleClose}>
+      <>
+        <button
+          onClick={handleClose}
+          className="modalButton absolute right-5 top-5 !z-40 h-9 w-9 boarder-none bg-[#181818]"
+        >
+          <XIcon className="h-6 w-6" />
+        </button>
+      </>
+    </MuiModal>
+  );
 };
 
 export default Modal;
